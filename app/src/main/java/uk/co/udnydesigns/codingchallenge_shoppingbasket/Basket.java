@@ -9,11 +9,13 @@ import java.util.ArrayList;
 public class Basket
 {
     private ArrayList<Item> basket;
+    private Customer customer;
 
 
-    public Basket()
+    public Basket(Customer customer)
     {
         this.basket = new ArrayList<Item>();
+        this.customer = customer;
     }
 
     public void addItem(Item item)
@@ -38,8 +40,11 @@ public class Basket
 
     public Double value()
     {
+
         Double subtotal = 0.0;
-        Double total = 0.0;
+        Double total1 = 0.0;
+        Double total2 = 0.0;
+
         String bogoff= "";
 
         for (Item item: this.basket)
@@ -60,13 +65,24 @@ public class Basket
         // if total greater than 20 give 10%
         if (subtotal >= 20.00){
 
-            total = (subtotal/100.0)*90.0;
-        } else
+            total1 = (subtotal/100.0)*90.0;
+        }
+        else
         {
-            total = subtotal;
+            total1 = subtotal;
         }
 
-        return total;
+        // customer has discount card 2%
+        if (customer.getCard()){
+
+            total2 = (total1/100.0)*98.0;
+        }
+        else
+        {
+            total2 = total1;
+        }
+
+        return total2;
     }
 
 
