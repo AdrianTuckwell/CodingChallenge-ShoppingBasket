@@ -16,6 +16,7 @@ public class BasketUnitTest
     Item item1;
     Item item2;
     Item item3;
+    Item item4;
 
     @Before
     public void before()
@@ -24,6 +25,7 @@ public class BasketUnitTest
         item1 = new Item("Jaffa Cakes", 2.49);
         item2 = new Item("Milk", 0.69);
         item3 = new Item("Chicken", 5.49);
+        item4 = new Item("meal for one", 100.00);
     }
 
     @Test
@@ -75,5 +77,23 @@ public class BasketUnitTest
         assertEquals(8.67, basket.value(),0.01);
     }
 
+    @Test
+    public void testBogOffplusOne()
+    {
+        basket.addItem(item1);
+        basket.addItem(item1);
+        basket.addItem(item1);
+        basket.addItem(item2);
+        basket.addItem(item3);
+        assertEquals(5, basket.countItems());
+        assertEquals(11.16, basket.value(),0.01);
+    }
+
+    @Test
+    public void testTenPercentDiscount()
+    {
+        basket.addItem(item4);
+        assertEquals(90.00, basket.value(),0.01);
+    }
 
 }

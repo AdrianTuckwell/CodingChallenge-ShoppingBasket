@@ -38,6 +38,7 @@ public class Basket
 
     public Double value()
     {
+        Double subtotal = 0.0;
         Double total = 0.0;
         String bogoff= "";
 
@@ -45,16 +46,32 @@ public class Basket
         {
            if (bogoff == item.getName())
             {
+                //if bogoff is the same as last item reset
                 bogoff = "";
 
             } else
             {
+                //Store the name of the item
                 bogoff = item.getName();
-                total += item.getPrice();
+                subtotal += item.getPrice();
             }
+        }
+
+        // if total greater than 20 give 10%
+        if (subtotal >= 20.00){
+
+            total = (subtotal/100.0)*90.0;
+        } else
+        {
+            total = subtotal;
         }
 
         return total;
     }
 
+
+
+
+
 }
+
