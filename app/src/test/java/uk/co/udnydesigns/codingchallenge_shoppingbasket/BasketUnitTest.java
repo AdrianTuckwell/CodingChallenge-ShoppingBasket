@@ -64,5 +64,16 @@ public class BasketUnitTest
         assertEquals(8.67, basket.value(),0.01);
     }
 
+    @Test
+    public void testBogOff()
+    {
+        basket.addItem(item1);
+        basket.addItem(item1);
+        basket.addItem(item2);
+        basket.addItem(item3);
+        assertEquals(4, basket.countItems());
+        assertEquals(8.67, basket.value(),0.01);
+    }
+
 
 }

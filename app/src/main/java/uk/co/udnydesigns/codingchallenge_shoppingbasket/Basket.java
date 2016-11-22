@@ -39,10 +39,19 @@ public class Basket
     public Double value()
     {
         Double total = 0.0;
+        String bogoff= "";
 
         for (Item item: this.basket)
         {
-            total += item.getPrice();
+           if (bogoff == item.getName())
+            {
+                bogoff = "";
+
+            } else
+            {
+                bogoff = item.getName();
+                total += item.getPrice();
+            }
         }
 
         return total;
